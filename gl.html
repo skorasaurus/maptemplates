@@ -7,8 +7,8 @@
 <title>Mapbox Template</title>
 
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.6.0/mapbox-gl.css' rel='stylesheet' />
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.6.0/mapbox-gl.js'></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.1/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.1/mapbox-gl.css' rel='stylesheet' />
 
 
 <style>
@@ -25,9 +25,11 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU
 
 
 // Create a map in the div #map
-new mapboxgl.Map({
-  container: 'mapid',
-  style: 'bright.json'
+var map = new mapboxgl.Map({
+    container: 'mapid', // container id
+    style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
+    center: [-74.50, 40], // starting position
+    zoom: 9 // starting zoom
 });
 
 </script>
