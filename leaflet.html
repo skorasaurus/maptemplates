@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
-         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.7/leaflet.js"></script>
+         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.7/leaflet.css" />
     </head>
 <body>
 
@@ -11,7 +11,7 @@
 
         <script>
                     
-                var basemap = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/skorasaurus.3iunyt15/{z}/{x}/{y}.png', {maxZoom: 18});
+                var basemap = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/skorasaurus.5eb85050/{z}/{x}/{y}.png', {maxZoom: 18});
                 var latlng = new L.LatLng(41.501860,-81.635799);
                 
                 var map = new L.Map('mapid', {center: latlng, zoom: 10, layers: [basemap]});
