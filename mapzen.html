@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+<!-- style sheet for mapzen.js -->
+<link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
+
+<!-- latest minified version of mapzen.js -->
+<script src="https://mapzen.com/js/mapzen.min.js"></script>
+    </head>
+<body>
+
+<div id="mapid" style="width: 100%; height: 600px; border: 1px solid #ccc;"></div>
+
+<script>
+                    
+var map = L.Mapzen.map('mapid', {
+  center: [41.48,-81.68],
+  zoom: 12,
+  scene: L.Mapzen.BasemapStyles.BubbleWrap
+})
+
+  // see https://mapzen.com/documentation/mapzen-js/api-reference/ for other defined scene styles              
+  // L.Mapzen.BasemapStyles.CinnabarMoreLabels
+  // find out what version/release of Mapzen's scene files being used? master? 
+
+</script>
+</body>
+</html>
