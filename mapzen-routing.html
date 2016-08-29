@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Geocoding Map</title>
+  <meta charset="utf-8">
+
+<link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
+<script src="https://mapzen.com/js/mapzen.min.js"></script>  
+
+<style>
+  #map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+  html,body{margin: 0; padding: 0}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+  var map = L.Mapzen.map('map', {
+    center: [47.61033,-122.31801],
+    zoom: 16,
+    scene: L.Mapzen.HouseStyles.BubbleWrap
+  });
+  // replace HouseStyles with BasemapStyle re: https://github.com/mapzen/mapzen.js/issues/163
+  var geocoder = L.Mapzen.geocoder('search-sMsPwC', {
+  	autocomplete: true, // false 
+	params: {
+	    sources: 'oa',
+	    layers: 'address' // 
+	} // https://mapzen.com/documentation/search/search/#filter-your-search
+  });
+    geocoder.addTo(map);
+</script>
+</body>
+</html>
+
