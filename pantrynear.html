@@ -35,35 +35,38 @@ var mymap = L.mapbox.map('mapid', 'skorasaurus.jjechb76', {maxZoom: 17})
 // - The file must either be on the same domain as the page that requests it,
 //   or both the server it is requested from and the user's browser must
 //   support CORS.
-var thecsv = omnivore.csv('2016-10.csv')
+const theCsv = omnivore.csv('2016-10.csv')
   .on('ready', function() { 
-        thecsv.eachLayer(function(layer) {
+        theCsv.eachLayer(function(layer) {
             // See the `.bindPopup` documentation for full details. This
             // dataset has a property called `name`: your dataset might not,
             // so inspect it and customize to taste.
             layer.bindPopup(layer.feature.properties.family_id);
         });
   }); 
-thecsv.addTo(mymap);
+theCsv.addTo(mymap);
 
 
-var thepantry = {
+var thePantry = {
   "type": "Feature",
   "properties": {name: 'the pantry'},
   "geometry": {
     "type": "Point",
-    "coordinates": [-81.648264, ]
+    "coordinates": [-81.648264, 41.488655]
   }
 };
 var unit = 'miles';
 
-var buffered = turf.buffer(thepantry, 1, unit);
+var buffered = turf.buffer(thePantry, 1, unit);
 
 // buffered.addTo(mymap); 
 
 
-var result = turf.featurecollection([buffered, thepantry]);
+var theCircle = turf.featurecollection([buffered, thePantry]);
 
+var resultLayer = L.mapbox.featureLayer().setGeoJSON(theCircle).addTo(mymap);
+
+var ptsWithin = turf.within(theCsv, theCircle);
 
 console.log(Object.keys(thecsv).length); 
 
