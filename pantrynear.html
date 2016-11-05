@@ -25,7 +25,7 @@
 L.mapbox.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g';
 
 // skorasaurus.clemaps skorasaurus.h2291444
-var mymap = L.mapbox.map('mapid', 'skorasaurus.jjechb76', {maxZoom: 17})
+var myMap = L.mapbox.map('mapid', 'skorasaurus.jjechb76', {maxZoom: 17})
     .setView([41.500462, -81.701889], 13);
 
 // Omnivore will AJAX-request this file behind the scenes and parse it:
@@ -44,7 +44,7 @@ const theCsv = omnivore.csv('2016-10.csv')
             layer.bindPopup(layer.feature.properties.family_id);
         });
   }); 
-theCsv.addTo(mymap);
+theCsv.addTo(myMap);
 
 
 var thePantry = {
@@ -61,14 +61,13 @@ var buffered = turf.buffer(thePantry, 1, unit);
 
 // buffered.addTo(mymap); 
 
-
 var theCircle = turf.featurecollection([buffered, thePantry]);
 
-var resultLayer = L.mapbox.featureLayer().setGeoJSON(theCircle).addTo(mymap);
+var resultLayer = L.mapbox.featureLayer().setGeoJSON(theCircle).addTo(myMap);
 
 var ptsWithin = turf.within(theCsv, theCircle);
 
-console.log(Object.keys(thecsv).length); 
+// console.log(Object.keys(thecsv).length); 
 
 
 
