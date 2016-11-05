@@ -1,0 +1,78 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Memphis</title>
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+<style>
+  body { margin:0; padding:0; }
+  #mapid { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+<div id='mapid'></div>
+<script>
+
+L.mapbox.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g';
+
+// skorasaurus.clemaps skorasaurus.h2291444
+var mymap = L.mapbox.map('mapid', 'skorasaurus.jjechb76', {maxZoom: 17})
+    .setView([41.500462, -81.701889], 13);
+
+// Omnivore will AJAX-request this file behind the scenes and parse it:
+// note that there are considerations:
+// - The CSV file must contain latitude and longitude values, in column
+//   named roughly latitude and longitude
+// - The file must either be on the same domain as the page that requests it,
+//   or both the server it is requested from and the user's browser must
+//   support CORS.
+var thecsv = omnivore.csv('2016-10.csv')
+  .on('ready', function() { 
+        thecsv.eachLayer(function(layer) {
+            // See the `.bindPopup` documentation for full details. This
+            // dataset has a property called `name`: your dataset might not,
+            // so inspect it and customize to taste.
+            layer.bindPopup(layer.feature.properties.family_id);
+        });
+  }); 
+thecsv.addTo(mymap);
+
+
+var thepantry = {
+  "type": "Feature",
+  "properties": {name: 'the pantry'},
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-81.648264, ]
+  }
+};
+var unit = 'miles';
+
+var buffered = turf.buffer(thepantry, 1, unit);
+
+// buffered.addTo(mymap); 
+
+
+var result = turf.featurecollection([buffered, thepantry]);
+
+
+console.log(Object.keys(thecsv).length); 
+
+
+
+
+</script>
+
+</body>
+</html>
+
+
