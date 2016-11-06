@@ -57,11 +57,7 @@ var thePantry = {
 };
 var unit = 'miles';
 
-var buffered = turf.buffer(thePantry, 1, unit);
-
-// buffered.addTo(mymap); 
-
-var theCircle = turf.featurecollection([buffered, thePantry]);
+var theCircle = turf.buffer(thePantry, 1, unit);
 
 var resultLayer = L.mapbox.featureLayer().setGeoJSON(theCircle).addTo(myMap);
 
