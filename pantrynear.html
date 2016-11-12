@@ -22,11 +22,12 @@
 <div id='mapid'></div>
 <script>
 
+// NEWER TURF https://npmcdn.com/@turf/turf@3.5.1/turf.min.js
+
 L.mapbox.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g';
 
-// skorasaurus.clemaps skorasaurus.h2291444
-var myMap = L.mapbox.map('mapid', 'skorasaurus.jjechb76', {maxZoom: 17})
-    .setView([41.500462, -81.701889], 13);
+const myMap = L.mapbox.map('mapid', 'skorasaurus.jjechb76', {maxZoom: 17})
+    .setView([41.500, -81.7018], 13);
 
 // Omnivore will AJAX-request this file behind the scenes and parse it:
 // note that there are considerations:
@@ -46,6 +47,48 @@ const theCsv = omnivore.csv('2016-10.csv')
   }); 
 theCsv.addTo(myMap);
 
+// random points for testing
+// var points = {
+//   "type": "FeatureCollection",
+//   "features": [
+//     {
+//       "type": "Feature",
+//       "properties": {},
+//       "geometry": {
+//         "type": "Point",
+//         "coordinates": [-46.6318, -23.5523]
+//       }
+//     }, {
+//       "type": "Feature",
+//       "properties": {},
+//       "geometry": {
+//         "type": "Point",
+//         "coordinates": [-46.6246, -23.5325]
+//       }
+//     }, {
+//       "type": "Feature",
+//       "properties": {},
+//       "geometry": {
+//         "type": "Point",
+//         "coordinates": [-46.6062, -23.5513]
+//       }
+//     }, {
+//       "type": "Feature",
+//       "properties": {},
+//       "geometry": {
+//         "type": "Point",
+//         "coordinates": [-46.663, -23.554]
+//       }
+//     }, {
+//       "type": "Feature",
+//       "properties": {},
+//       "geometry": {
+//         "type": "Point",
+//         "coordinates": [-46.643, -23.557]
+//       }
+//     }
+//   ]
+// };
 
 var thePantry = {
   "type": "Feature",
@@ -57,14 +100,21 @@ var thePantry = {
 };
 var unit = 'miles';
 
-var theCircle = turf.buffer(thePantry, 1, unit);
+var theCircle = turf.featurecollection(turf.buffer(thePantry, 1, unit));
 
+// why doesn't this work anymore
 var resultLayer = L.mapbox.featureLayer().setGeoJSON(theCircle).addTo(myMap);
+
+// var ptsWithin = turf.within(points, theCircle);
 
 var ptsWithin = turf.within(theCsv, theCircle);
 
-// console.log(Object.keys(thecsv).length); 
+// console.log(Object.keys(theCsv).length); 
 
+
+// TODO: 
+
+// COUNT HOW ptsWithin are there. 
 
 
 
