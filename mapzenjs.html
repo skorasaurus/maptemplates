@@ -20,8 +20,19 @@ var map = L.Mapzen.map('mapid', {
   scene: L.Mapzen.BasemapStyles.CinnabarMoreLabels
 })
 
-  // see https://mapzen.com/documentation/mapzen-js/api-reference/ for other defined scene styles              
-  // L.Mapzen.BasemapStyles.CinnabarMoreLabels
+// if I want to do custom styles (I'd , ref the explicit file path in scene)
+// see https://github.com/mapzen/mapzen.js/issues/225#issuecomment-238977469 
+// also see mz-bubblewrap.html in my maps/ of my personal website
+
+var baseLayers = {
+		"Cinnabar": L.Mapzen.BasemapStyles.CinnabarMoreLabels,
+		"Refill": L.Mapzen.BasemapStyles.Refill, 
+		"zinc": L.Mapzen.BasemapStyles.Zinc, 
+		"zinc more labels": L.Mapzen.BasemapStyles.ZincMoreLabels
+	};
+
+L.control.layers(baseLayers).addTo(map);
+
   // find out what version/release of Mapzen's scene files being used? master? 
 
 </script>
