@@ -1,5 +1,6 @@
-<!-- hacked example of  --
+<!-- hacked example of  -->
 <!--  mapzen.js/test/examples/house-style-switcher-embed.html  -->
+<!-- code works, but check https://github.com/mapzen/mapzen.js/issues/318 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
     </ul>
     <div class="demo-control-next"><i class="fa fa-fw fa-angle-right"></i></div>
   </div>
-  <script src="https://mapzen.com/js/mapzen.min.js"></script>
+  <script src="https://mapzen.com/js/mapzen.js"></script>
   <script src='https://mapzen.com/resources/projects/demo-switcher.js'></script>
   <script type="text/javascript" src="leaflet-hash.js"></script>
   <script>
@@ -61,8 +62,9 @@
         }); 
 
     var map = L.Mapzen.map('map');
+    L.Mapzen.apiKey = 'vector-tiles-6tEQQJ8'; 
     var tangramLayer;
-    map.setView([41.29, -81.6868], 15);
+    map.setView([41.4815, -81.703], 13);
 
     map.addControl(new LoadingSpinner());
 
