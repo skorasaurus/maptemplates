@@ -35,8 +35,9 @@
   </div>
   <script src="https://mapzen.com/js/mapzen.js"></script>
   <script src='https://mapzen.com/resources/projects/demo-switcher.js'></script>
-  <script type="text/javascript" src="leaflet-hash.js"></script>
   <script>
+
+    L.Mapzen.apiKey = 'vector-tiles-6tEQQJ8'; 
 
 
   (function () {
@@ -62,7 +63,6 @@
         }); 
 
     var map = L.Mapzen.map('map');
-    L.Mapzen.apiKey = 'vector-tiles-6tEQQJ8'; 
     var tangramLayer;
     map.setView([41.4815, -81.703], 13);
 
@@ -95,10 +95,10 @@
     });
 
     var demo_sources = [
-        { title: 'Bubble Wrap', scene: L.Mapzen.BasemapStyles.BubbleWrap },
+        { title: 'Bubble Wrap', scene: L.Mapzen.BasemapStyles.BubbleWrapMoreLabels },
         { title: 'Refill', scene: L.Mapzen.BasemapStyles.RefillMoreLabels },
         { title: 'Walkabout', scene: L.Mapzen.BasemapStyles.WalkaboutMoreLabels },
-        { title: 'Tron', scene: L.Mapzen.BasemapStyles.TronMoreLabels },
+        { title: 'Tron', scene: L.Mapzen.BasemapStyles.Tron },
         { title: 'Cinnabar', scene: L.Mapzen.BasemapStyles.CinnabarMoreLabels },
         { title: 'Zinc', scene: L.Mapzen.BasemapStyles.ZincMoreLabels }
       ];
