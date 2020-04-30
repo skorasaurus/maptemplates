@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+        <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+        <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
+
+    </head>
+    <style>
+    #mapid {
+    width: 80%; 
+    height: 320px; 
+    position: relative;
+    margin-bottom: 3em; 
+}
+    </style>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="mapid"></div>
+        <script>
+
+// http://c.tile.openstreetmap.org/16/17923/24475.png
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g';
+var myMap = new mapboxgl.Map({
+
+  container: 'mapid',
+  center: [-81.68334960937501, 41.51783221717116],
+  zoom: 11,
+  style: 'mapbox://styles/skorasaurus/ck2ew6z291ct01cnmjc5lz50b?optimize=true',
+  hash: true,
+});
+
+myMap.on('load', function() {
+        myMap.addSource('libraries-points', {
+            'type': 'geojson',
+            data: 'locations-points.geojson',
+        });
+        console.log('success');
+        myMap.addLayer({
+            id: 'libraries',
+            type: 'circle',
+            source: 'libraries-points',
+            paint: {
+                // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+                'circle-opacity': 0.98,
+                'circle-color': '#fc8d62',
+                'circle-radius': 10
+            }
+        });    
+});
+
+myMap.on('click', 'libraries', function(e) {
+new mapboxgl.Popup()
+.setLngLat(e.lngLat)
+.setHTML('<a href="'+e.features[0].properties.shortlink+'">'+e.features[0].properties.name +'</a><br>' + e.features[0].properties.housenumber + ' ' + e.features[0].properties.street+ '<br>' + 
+	    '<a href="https://www.google.com/maps/search/'+e.features[0].properties.housenumber + ' ' + e.features[0].properties.street+ " Cleveland" + ' ' + e.features[0].properties.postcode + '">'+' Get directions </a>')
+.addTo(myMap);
+});
+
+
+// for locations.html only
+//var featLayer = L.mapbox.featureLayer().loadURL('js/locations-points.geojson').addTo(mymap); 
+// FOR LOCAL.wordpress.test // neither work on temp.cpl.org
+// var featLayer = L.mapbox.featureLayer().loadURL('https://cpl.org/wp-content/themes/tempera-nocopyrt/js/locations-points.geojson').addTo(myMap); 
+
+// featLayer.on('ready', function() {
+//     featLayer.eachLayer(function(tehLayer) {
+//     	 popupContent = '<a href="'+e.features[0].properties.shortlink+'">'+e.features[0].properties.name +'</a><br>' + e.features[0].properties.housenumber + ' ' + e.features[0].properties.street+ '<br>' + 
+// 	    '<a href="https://www.google.com/maps/search/'+e.features[0].properties.housenumber + ' ' + e.features[0].properties.street+ " Cleveland" + ' ' + e.features[0].properties.postcode + '">'+' Get directions </a>'; 
+		 
+// 		tehLayer.bindPopup(popupContent);
+//     });
+// }).addTo(myMap);        
+        </script>
+
+
+    </body>
+</html>
