@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css">
+        <script src="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js"></script>
+
+        <style>
+            #mapid {
+        width: 40%; 
+        height: 320px; 
+        position: relative;
+        margin-bottom: 3em; 
+    }
+
+    /* .leaflet-marker-icon:focus,
+    .leaflet-marker-icon:hover, {
+        outline: .25em solid #8cc63f
+    } */
+
+
+    .leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive:hover,
+    .leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive:focus {
+        outline: .25em solid black;
+    }
+
+
+        </style>
+    </head>
+
+    <body>
+        <div id="mapid"></div>
+        <script>
+
+L.mapbox.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiY2pmNDNpYXBuMGl3cjJ3bzF6cm1kbHFxaSJ9.5fsBdDBA9bm_mO2idlMP9A';
+// http://c.tile.openstreetmap.org/16/17923/24475.png
+
+var myLayer = 'https://api.mapbox.com/styles/v1/skorasaurus/ck2ew6z291ct01cnmjc5lz50b/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g';
+
+
+var myMap = L.map('mapid').setView([41.51783221717116, -81.68334960937501], 11);
+L.tileLayer(myLayer, {attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a>, <a href="https://www.openstreetmap.org/">© OpenStreetMap</a>'}).addTo(myMap);
+
+// for locations.html only
+//var featLayer = L.mapbox.featureLayer().loadURL('js/locations-points.geojson').addTo(mymap); 
+// FOR LOCAL.wordpress.test // neither work on temp.cpl.org
+var featLayer = L.mapbox.featureLayer().loadURL('locations-points.geojson').addTo(myMap); 
+
+featLayer.on('ready', function() {
+    featLayer.eachLayer(function(tehLayer) {
+    	 popupContent = '<a href="'+tehLayer.feature.properties.shortlink+'">'+tehLayer.feature.properties.name +'</a><br>' + tehLayer.feature.properties.housenumber + ' ' + tehLayer.feature.properties.street+ '<br>' + 
+	    '<a href="https://www.google.com/maps/search/'+tehLayer.feature.properties.housenumber + ' ' + tehLayer.feature.properties.street+ " Cleveland" + ' ' + tehLayer.feature.properties.postcode + '">'+' Get directions </a>'; 
+		 
+		tehLayer.bindPopup(popupContent);
+    });
+}).addTo(myMap);        
+        </script>
+
+
+    </body>
+</html>
