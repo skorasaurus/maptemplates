@@ -38,24 +38,24 @@ var myMap = new mapboxgl.Map({
   hash: true,
 });
 
-// myMap.on('load', function() {
-//         myMap.addSource('libraries-points', {
-//             'type': 'geojson',
-//             data: 'locations-points.geojson',
-//         });
-//         console.log('success');
-//         myMap.addLayer({
-//             id: 'libraries',
-//             type: 'circle',
-//             source: 'libraries-points',
-//             paint: {
-//                 // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-//                 'circle-opacity': 0.98,
-//                 'circle-color': '#fc8d62',
-//                 'circle-radius': 10
-//             }
-//         });    
-// });
+myMap.on('load', function() {
+        myMap.addSource('libraries-points', {
+            'type': 'geojson',
+            data: 'locations-points.geojson',
+        });
+        console.log('success');
+        myMap.addLayer({
+            id: 'libraries',
+            type: 'circle',
+            source: 'libraries-points',
+            paint: {
+                // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+                'circle-opacity': 0.98,
+                'circle-color': '#fc8d62',
+                'circle-radius': 10
+            }
+        });    
+});
 
 myMap.on('click', 'libraries', function(e) {
 new mapboxgl.Popup()
