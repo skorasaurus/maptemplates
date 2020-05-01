@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>test</title>
+<link rel="stylesheet" href="dist/leaflet.css">
+<script src="dist/leaflet.js"></script>
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script> -->
+
+</head>
+<h1>the test case </h1>
+<body>
+
+<p>this is a test and <a href="https://cpl.org">the homepage of cleveland public library</a>. and here's the map of our locations:</p>
+<div id="mapid" style="width: 100%; height: 600px; border: 1px solid #ccc;"></div>
+
+<script>
+                    
+var baseMap = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/skorasaurus.5eb85050/{z}/{x}/{y}.png', {maxZoom: 13});
+var latLng = new L.latLng(41.501860,-81.635799);
+
+var myMap = new L.Map('mapid', {center: latLng, zoom: 10, layers: [baseMap]});
+
+
+var riceMarker = L.marker([41.501860,-81.835799]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/rice">A Rice</a>');
+
+var bkMarker = L.marker([41.45422617,-81.70156717]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/brooklyn">B 	Brooklyn</a>');
+
+var sterlingMarker = L.marker([41.4975646, -81.6667516]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/hough">C Sterling</a>');
+
+var houghMarker = L.marker([41.514554,-81.62309799]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/hough">Hough</a>');
+
+var mtMarker = L.marker([41.4641667, -81.584]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/hough">MT pleasant</a>');
+
+
+var harvMarker = L.marker([41.4495436, -81.5616066]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/hough">Harv</a>');
+
+
+
+
+</script>
+        
+        
+</body>
+</html>
