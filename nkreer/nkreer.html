@@ -18,7 +18,10 @@
 
 <script>
                     
-var baseMap = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/skorasaurus.5eb85050/{z}/{x}/{y}.png', {maxZoom: 13});
+var baseMap = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/skorasaurus.5eb85050/{z}/{x}/{y}.png', {maxZoom: 13, 
+			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'});
 var latLng = new L.latLng(41.501860,-81.635799);
 
 var myMap = new L.Map('mapid', {center: latLng, zoom: 10, layers: [baseMap]});
