@@ -22,10 +22,15 @@
 .cpl-map-marker {
         border: none;
         cursor: pointer;
-        height: 56px;
-        width: 56px;
+        height: 2em;
+        width: 2em;
         background-color: black;
       }
+
+      .cpl-map-marker:focus,
+    .cpl-map-marker:hover {
+        outline: .25em solid #2cc63f;
+    }
 
     </style>
     <body>
@@ -90,6 +95,8 @@ function addMarkers() {
     **/
     new mapboxgl.Marker(el, { offset: [0, -23] })
       .setLngLat(marker.geometry.coordinates)
+      .setPopup(new mapboxgl.Popup().setHTML('<a href="'+locations.features[0].properties.shortlink+'">'+locations.features[0].properties.name +'</a><br>' + locations.features[0].properties.housenumber + ' ' + locations.features[0].properties.street+ '<br>' + 
+	    '<a href="https://www.google.com/maps/search/'+locations.features[0].properties.housenumber + ' ' + locations.features[0].properties.street+ " Cleveland" + ' ' + locations.features[0].properties.postcode + '">'+' Get directions </a>')) // add popup
       .addTo(myMap);
   });
 }
@@ -99,8 +106,7 @@ function addMarkers() {
 myMap.on('click', 'librariesID', function(e) {
 new mapboxgl.Popup()
 .setLngLat(e.lngLat)
-.setHTML('<a href="'+e.features[0].properties.shortlink+'">'+e.features[0].properties.name +'</a><br>' + e.features[0].properties.housenumber + ' ' + e.features[0].properties.street+ '<br>' + 
-	    '<a href="https://www.google.com/maps/search/'+e.features[0].properties.housenumber + ' ' + e.features[0].properties.street+ " Cleveland" + ' ' + e.features[0].properties.postcode + '">'+' Get directions </a>')
+.setHTML()
 .addTo(myMap);
 });
 
