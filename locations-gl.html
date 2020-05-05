@@ -95,8 +95,8 @@ function addMarkers() {
     **/
     new mapboxgl.Marker(el, { offset: [0, -23] })
       .setLngLat(marker.geometry.coordinates)
-      .setPopup(new mapboxgl.Popup().setHTML('<a href="'+locations.features[0].properties.shortlink+'">'+locations.features[0].properties.name +'</a><br>' + locations.features[0].properties.housenumber + ' ' + locations.features[0].properties.street+ '<br>' + 
-	    '<a href="https://www.google.com/maps/search/'+locations.features[0].properties.housenumber + ' ' + locations.features[0].properties.street+ " Cleveland" + ' ' + locations.features[0].properties.postcode + '">'+' Get directions </a>')) // add popup
+      .setPopup(new mapboxgl.Popup().setHTML('<a href="'+marker.properties.shortlink+'">'+marker.properties.name +'</a><br>' + marker.properties.housenumber + ' ' + marker.properties.street+ '<br>' + 
+	    '<a href="https://www.google.com/maps/search/'+ marker.properties.housenumber + ' ' + marker.properties.street+ " Cleveland" + ' ' + marker.properties.postcode + '">'+' Get directions </a>')) // add popup
       .addTo(myMap);
   });
 }
