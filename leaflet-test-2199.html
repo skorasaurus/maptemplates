@@ -13,12 +13,15 @@
 <h1>the test case </h1>
 <body>
 
-<p>this is a test and <a href="https://cpl.org">the homepage of cleveland public library</a>. and here's the map of our locations:</p>
+<p>this is a test case for <a href="https://github.com/Leaflet/Leaflet/issues/2199">leaflet #2199</a>. I've added one more link for testing sake, like <a href="https://cpl.org">the homepage of cleveland public library</a>Now, here's the map of our locations:</p>
 <div id="mapid" style="width: 100%; height: 600px; border: 1px solid #ccc;"></div>
 
 <script>
                     
-var baseMap = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/skorasaurus.5eb85050/{z}/{x}/{y}.png', {maxZoom: 13});
+var baseMap = new L.TileLayer('https://api.mapbox.com/styles/v1/skorasaurus/ck7dgdmi50d101irle2gk2cbb/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g', {maxZoom: 13, 	
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',});
 var latLng = new L.latLng(41.501860,-81.635799);
 
 var myMap = new L.Map('mapid', {center: latLng, zoom: 10, layers: [baseMap]});
