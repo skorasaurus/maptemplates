@@ -82,7 +82,6 @@ function addMarkers() {
   locations.features.forEach(function(marker) {
     /* Create a div element for the marker. */
     var el = document.createElement('div');
-    console.log("marker id for " + marker.properties.shortlink + "made");
     /* Assign a unique `id` to the marker. */
     el.id = "marker-" + marker.properties.shortlink;
     /* Assign the `marker` class to each marker for styling. */
@@ -103,12 +102,12 @@ function addMarkers() {
 
 
 
-myMap.on('click', 'librariesID', function(e) {
-new mapboxgl.Popup()
-.setLngLat(e.lngLat)
-.setHTML()
-.addTo(myMap);
-});
+// myMap.on('click', 'librariesID', function(e) {
+// new mapboxgl.Popup()
+// .setLngLat(e.lngLat)
+// .setHTML()
+// .addTo(myMap);
+// });
 
         </script>
 

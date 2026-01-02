@@ -7,8 +7,13 @@
   <meta charset="utf-8"/>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <title>Mapzen House Styles</title>
-  <link rel='stylesheet' href='https://mapzen.com/common/styleguide/styles/blog.css' type='text/css'>
-  <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
+<!-- Load Leaflet from CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+
+<!-- Load geocoding plugin after Leaflet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.js"></script>
   <style>
     html, body {
       width: 100%;
@@ -27,14 +32,6 @@
 
   <div id='map'></div>
 
-  <div class="demo-controls" id="demo-controls">
-    <div class="demo-control-previous"><i class="fa fa-fw fa-angle-left"></i></div>
-    <ul class="demo-control-list">
-    </ul>
-    <div class="demo-control-next"><i class="fa fa-fw fa-angle-right"></i></div>
-  </div>
-  <script src="https://mapzen.com/js/mapzen.js"></script>
-  <script src='https://mapzen.com/resources/projects/demo-switcher.js'></script>
   <script>
 
     L.Mapzen.apiKey = 'vector-tiles-6tEQQJ8'; 
