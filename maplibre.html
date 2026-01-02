@@ -1,0 +1,36 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Maplibre</title>
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+<style>
+  body { margin:0; padding:0; }
+  #mapid { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+
+<script src="https://unpkg.com/maplibre-gl@^5.15.0/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@^5.15.0/dist/maplibre-gl.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div id='mapid'></div>
+<script>
+
+var map = new maplibregl.Map({
+        container: 'mapid', // container id
+        style: 'https://demotiles.maplibre.org/globe.json', // style URL
+        center: [0, 0], // starting position [lng, lat]
+        zoom: 2 // starting zoom
+    });
+</script>
+
+</body>
+</html>
+
+
