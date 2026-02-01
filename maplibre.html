@@ -10,7 +10,7 @@
 
 <style>
   body { margin:0; padding:0; }
-  #mapid { position:absolute; top:0; bottom:0; width:100%; }
+  #mapid { position:absolute; top:0; bottom:0; width:80%; }
 </style>
 
 <script src="https://unpkg.com/maplibre-gl@^5.15.0/dist/maplibre-gl.js"></script>
@@ -24,10 +24,73 @@
 
 var map = new maplibregl.Map({
         container: 'mapid', // container id
-        style: 'https://demotiles.maplibre.org/globe.json', // style URL
-        center: [0, 0], // starting position [lng, lat]
-        zoom: 2 // starting zoom
+        style: 'https://tiles.openfreemap.org/styles/bright', // style URL
+        center: [-81.782227, 41.216476], // starting position [lng, lat]
+        zoom: 5 // starting zoom
     });
+
+// load the geojson and see that you would be able to tab between markers; because you can' 
+
+map.on('load', function () {
+  map.addSource('geojsonSource', {
+    type: 'geojson',
+    data: 'clustered-points.geojson',
+  });
+
+  map.addLayer({
+    id: 'geojsonLayer',
+    type: 'circle',
+    source: 'geojsonSource',
+    paint: {
+        'circle-radius': 6,
+        'circle-color': '#B42222'
+    },
+  });
+});
+
+const marker = new maplibregl.Marker()
+        .setLngLat([-81.782227, 41.216476])
+        .addTo(map);
+
+
+       // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'geojsonLayer', (e) => {
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const description = e.features[0].properties.description;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new maplibregl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+        // add markers to map
+// geojsonSource.features.forEach((marker) => {
+  geojsonLayer.features.forEach((marker) => {
+    // create a DOM element for the marker
+    const el = document.createElement('div');
+    el.className = 'marker';
+    el.style.width = `${marker.properties.iconSize[0]}px`;
+    el.style.height = `${marker.properties.iconSize[1]}px`;
+
+    el.addEventListener('click', () => {
+        window.alert(marker.properties.message);
+    });
+
+    // add marker to map
+    new maplibregl.Marker({element: el})
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+});
+
 </script>
 
 </body>
