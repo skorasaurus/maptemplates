@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8 />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Leaflet test</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@>=2.0.0-alpha.1/dist/leaflet.css">
+<style>
+    body { margin:0; padding:0; }
+    #mapid { height: 600px; width:100%; }
+</style>
+</head>
+<h1>the test case </h1>
+<body>
+
+
+
+<p>This page is a test case for <a href="https://github.com/Leaflet/Leaflet/issues/9898">Leaflet Issue #9898</a> I'm adding an additional link at the end of this sentence that is outside of the map element for testing purposes: <a href="https://cpl.org">the homepage of cleveland public library</a>. Now, here's a map with some of our locations:</p>
+
+
+<div id="mapid"></div>
+
+<script type="importmap">
+    {
+        "imports": {
+            "leaflet": "https://unpkg.com/leaflet@2.0.0-alpha.1/dist/leaflet.js"
+        }
+    }
+</script>
+<script type="module">
+    import L, {Map, TileLayer, Marker, Circle, Polygon, Popup} from 'leaflet';
+
+    const myMap = new Map('mapid').setView([41.5018,-81.635], 10);
+
+    const tiles = new TileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(myMap);
+
+
+
+var riceMarker = new Marker([41.501860,-81.835799]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/rice">A Rice</a>');
+
+var bkMarker = new Marker([41.45422617,-81.70156717]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/brooklyn">Brooklyn</a>');
+
+var sterlingMarker = new Marker([41.4975646, -81.6667516]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/hough">C Sterling</a>');
+
+var houghMarker = new Marker([41.514554,-81.62309799]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/hough">Hough</a>');
+
+var mtMarker = new Marker([41.4641667, -81.584]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/hough">MT pleasant</a>');
+
+
+var harvMarker = new Marker([41.4495436, -81.5616066]).addTo(myMap).bindPopup(
+	'<b>Hello world!</b><br>' + 
+	'<a href="https://cpl.org/locations/hough">Harv</a>');
+
+
+</script>
+</body>
+</html>
